@@ -1,0 +1,22 @@
+do the same for all of these stripe endpoints as well , use stripe npm when possible, but axios if its a curl request. Give us all routes and controllers 
+
+let stripe secret key be process.env.STRIPE_SECRET_KEY
+
+const express = require('express');
+const router = express.Router();
+const controller = require('./controllers');
+
+//Example
+// Create customer source
+// router.post('/customers/:customerId/sources', controller.createCustomerSource);
+
+
+module.exports = router;
+
+
+Ensure everything passes in through props to our controllers
+
+
+
+//Routes 
+
