@@ -1,0 +1,288 @@
+https://stripe.com/docs/api/credit_notes/object
+
+
+The credit note object
+Attributes
+id
+string
+Unique identifier for the object.
+
+currency
+currency
+Three-letter ISO currency code, in lowercase. Must be a supported currency.
+
+invoice
+string
+EXPANDABLE
+ID of the invoice.
+
+lines
+list
+Line items that make up the credit note
+
+Show child attributes
+memo
+string
+Customer-facing text that appears on the credit note PDF.
+
+metadata
+hash
+Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+
+reason
+string
+Reason for issuing this credit note, one of duplicate, fraudulent, order_change, or product_unsatisfactory
+
+status
+string
+Status of this credit note, one of issued or void. Learn more about voiding credit notes.
+
+subtotal
+integer
+The integer amount in cents representing the amount of the credit note, excluding exclusive tax and invoice level discounts.
+
+total
+integer
+The integer amount in cents representing the total amount of the credit note, including tax and all discount.
+
+More attributes
+Expand all
+object
+string, value is "credit_note"
+amount
+integer
+amount_shipping
+integer
+created
+timestamp
+customer
+string
+EXPANDABLE
+customer_balance_transaction
+string
+EXPANDABLE
+discount_amount
+integer
+DEPRECATED
+discount_amounts
+array of hashes
+effective_at
+timestamp
+livemode
+boolean
+number
+string
+out_of_band_amount
+integer
+pdf
+string
+refund
+string
+EXPANDABLE
+shipping_cost
+hash
+subtotal_excluding_tax
+integer
+tax_amounts
+array of hashes
+total_excluding_tax
+integer
+type
+string
+voided_at
+timestamp
+{
+  "id": "cn_1NlzEQCj54we6ywfdFkzHuWB",
+  "object": "credit_note",
+  "amount": 975,
+  "amount_shipping": 0,
+  "created": 1693681902,
+  "currency": "usd",
+  "customer": "cus_9s6XKzkNRiz8i3",
+  "customer_balance_transaction": null,
+  "discount_amount": 0,
+  "discount_amounts": [],
+  "effective_at": null,
+  "invoice": "in_1NlzEQ2eZvKYlo2CsgicSzfH",
+  "lines": {
+    "object": "list",
+    "data": [
+      {
+        "id": "cnli_1NlzEQCj54we6ywfRzKgNvKg",
+        "object": "credit_note_line_item",
+        "amount": 475,
+        "amount_excluding_tax": 475,
+        "description": "My First Invoice Item (created for API docs)",
+        "discount_amount": 0,
+        "discount_amounts": [],
+        "invoice_line_item": "il_1NlzEQCj54we6ywfaSlFLOiM",
+        "livemode": false,
+        "quantity": 1,
+        "tax_amounts": [
+          {
+            "amount": 76,
+            "inclusive": false,
+            "tax_rate": "txr_1NlzEQ2eZvKYlo2Ca34ssaHg",
+            "taxability_reason": null,
+            "taxable_amount": 399
+          }
+        ],
+        "tax_rates": [
+          {
+            "id": "txr_1NlzEQ2eZvKYlo2Ca34ssaHg",
+            "object": "tax_rate",
+            "active": true,
+            "country": "DE",
+            "created": 1693681902,
+            "description": "VAT Germany",
+            "display_name": "VAT",
+            "effective_percentage": null,
+            "inclusive": false,
+            "jurisdiction": "DE",
+            "livemode": false,
+            "metadata": {},
+            "percentage": 19.0,
+            "state": null,
+            "tax_type": "vat"
+          }
+        ],
+        "type": "invoice_line_item",
+        "unit_amount": null,
+        "unit_amount_decimal": null,
+        "unit_amount_excluding_tax": "475"
+      },
+      {
+        "id": "cnli_1NlzEQCj54we6ywfHcvGHK8j",
+        "object": "credit_note_line_item",
+        "amount": 500,
+        "amount_excluding_tax": 500,
+        "description": "Service credit",
+        "discount_amount": 0,
+        "discount_amounts": [],
+        "livemode": false,
+        "quantity": 1,
+        "tax_amounts": [],
+        "tax_rates": [],
+        "type": "custom_line_item",
+        "unit_amount": 500,
+        "unit_amount_decimal": "500",
+        "unit_amount_excluding_tax": "500"
+      }
+    ],
+    "has_more": false,
+    "url": "/v1/credit_notes/cn_1NlzEQCj54we6ywfdFkzHuWB/lines"
+  },
+  "livemode": false,
+  "memo": null,
+  "metadata": {},
+  "number": "ABCD-1234-CN-01",
+  "out_of_band_amount": null,
+  "pdf": "https://pay.stripe.com/credit_notes/acct_1MQRhQCj54we6ywf/cnst_123456789/pdf?s=ap",
+  "reason": null,
+  "refund": null,
+  "shipping_cost": null,
+  "status": "issued",
+  "subtotal": 975,
+  "subtotal_excluding_tax": 975,
+  "tax_amounts": [
+    {
+      "amount": 76,
+      "inclusive": false,
+      "tax_rate": "txr_1NlzEQ2eZvKYlo2Ca34ssaHg",
+      "taxability_reason": null,
+      "taxable_amount": 399
+    }
+  ],
+  "total": 975,
+  "total_excluding_tax": null,
+  "type": "pre_payment",
+  "voided_at": null
+}
+The (Credit Note) line item object
+Attributes
+id
+string
+Unique identifier for the object.
+
+object
+string, value is "credit_note_line_item"
+String representing the object’s type. Objects of the same type share the same value.
+
+amount
+integer
+The integer amount in cents representing the gross amount being credited for this line item, excluding (exclusive) tax and discounts.
+
+amount_excluding_tax
+integer
+The integer amount in cents representing the amount being credited for this line item, excluding all tax and discounts.
+
+description
+string
+Description of the item being credited.
+
+discount_amount
+integer
+DEPRECATED
+The integer amount in cents representing the discount being credited for this line item.
+
+discount_amounts
+array of hashes
+The amount of discount calculated per discount for this line item
+
+Show child attributes
+invoice_line_item
+string
+ID of the invoice line item being credited
+
+livemode
+boolean
+Has the value true if the object exists in live mode or the value false if the object exists in test mode.
+
+quantity
+integer
+The number of units of product being credited.
+
+tax_amounts
+array of hashes
+The amount of tax calculated per tax rate for this line item
+
+Show child attributes
+tax_rates
+array of hashes
+The tax rates which apply to the line item.
+
+Show child attributes
+type
+string
+The type of the credit note line item, one of invoice_line_item or custom_line_item. When the type is invoice_line_item there is an additional invoice_line_item property on the resource the value of which is the id of the credited line item on the invoice.
+
+unit_amount
+integer
+The cost of each unit of product being credited.
+
+unit_amount_decimal
+decimal string
+Same as unit_amount, but contains a decimal value with at most 12 decimal places.
+
+unit_amount_excluding_tax
+decimal string
+The amount in cents representing the unit amount being credited for this line item, excluding all tax and discounts.
+
+{
+  "id": "cnli_1NlzEQCj54we6ywfkI6zNGqF",
+  "object": "credit_note_line_item",
+  "amount": 399,
+  "amount_excluding_tax": 399,
+  "description": "My First Invoice Item (created for API docs)",
+  "discount_amount": 0,
+  "discount_amounts": [],
+  "invoice_line_item": "il_1NlzEQCj54we6ywfgnkCcAwi",
+  "livemode": false,
+  "quantity": 1,
+  "tax_amounts": [],
+  "tax_rates": [],
+  "type": "invoice_line_item",
+  "unit_amount": null,
+  "unit_amount_decimal": null,
+  "unit_amount_excluding_tax": "399"
+}
